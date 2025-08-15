@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}MALAK{% endblock %}</title>
+
+    <!-- Colors -->
+    <style>
+        :root {
+            --cream: #f5f3e7;
+            --burgundy: #5b231c;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--burgundy);
+            margin: 0;
+            font-family: 'Gilmer', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Sauvage', serif;
+        }
+
+        .accent {
+            font-family: 'The Seasons', italic;
+        }
+    </style>
+
+    <!-- Fonts (You must host these later if custom) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"> <!-- TEMP fallback -->
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    <nav style="
+    background-color: var(--burgundy);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+">
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto;">
+        <a href="/" style="color: var(--cream); text-decoration: none; font-weight: bold; font-size: 1.2rem;">
+            MALAK
+        </a>
+        <div style="display: flex; gap: 1.5rem;">
+            <a href="/" style="color: var(--cream); text-decoration: none;">Home</a>
+            <a href="#" style="color: var(--cream); text-decoration: none;">About</a>
+            <a href="#" style="color: var(--cream); text-decoration: none;">Contact</a>
+            <a href="/admin/" style="color: var(--cream); text-decoration: none;">Admin</a>
+            <a href="{% url 'view_cart' %}" style="color: var(--cream); text-decoration: none;">Cart</a>
+
+        </div>
+    </div>
+</nav>
+
+    <!-- Logo placeholder -->
+    <header style="text-align:center; padding: 2rem;">
+        <img src="{% static 'images/logo.png' %}" alt="Malak Logo" height="80">
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

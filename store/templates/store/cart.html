@@ -1,0 +1,33 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<h1 style="text-align:center;">Your Cart</h1>
+
+{% if cart_items %}
+    <div style="max-width: 800px; margin: auto;">
+        <ul>
+        {% for item in cart_items %}
+            <li style="margin-bottom: 1rem; padding: 1rem; border-bottom: 1px solid #ccc;">
+                <strong>{{ item.product.name }}</strong><br>
+                Quantity: {{ item.qty }}<br>
+                Item Total: ${{ item.item_total }}
+            </li>
+        {% endfor %}
+        </ul>
+        <h3>Total: ${{ total }}</h3>
+        <a href="#" style="
+            background-color: var(--burgundy);
+            color: var(--cream);
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        ">Proceed to Checkout</a>
+    </div>
+{% else %}
+    <p style="text-align:center;">Your cart is empty.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Home - MALAK{% endblock %}
+
+{% block content %}
+<h1 style="text-align:center;">Our Collection</h1>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding: 2rem;">
+    {% for product in products %}
+        <div style="background: white; border: 1px solid #ddd; padding: 1rem; width: 250px; text-align: center;">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto;">
+            <h2>{{ product.name }}</h2>
+            <p class="accent">{{ product.description }}</p>
+            <p><strong>${{ product.price }}</strong></p>
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+    {% csrf_token %}
+    <button type="submit" style="
+        background-color: var(--burgundy);
+        color: var(--cream);
+        padding: 0.5rem 1rem;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    ">Add to Cart</button>
+</form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
